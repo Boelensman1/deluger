@@ -1,15 +1,15 @@
 {
-  "name": "deluge",
+  "name": "deluger",
   "version": "0.0.1",
-  "description": "A wrapper around the Deluge API.",
+  "description": "A wrapper around the deluge API.",
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
   "license": "MIT",
   "author": "Wigger Boelens <me@wiggerboelens.com> (http://wiggerboelens.com/)",
-  "bugs": "https://github.com/Boelensman1/deluge/issues",
+  "bugs": "https://github.com/Boelensman1/deluger/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Boelensman1/deluge"
+    "url": "https://github.com/Boelensman1/deluger"
   },
   "dependencies": {
     "superagent": "3.5.2",
