@@ -1,0 +1,50 @@
+{
+  "name": "deluge",
+  "version": "0.0.1",
+  "description": "A wrapper around the Deluge API.",
+  "main": "lib/index.js",
+  "types": "./lib/index.d.ts",
+  "license": "MIT",
+  "author": "Wigger Boelens <me@wiggerboelens.com> (http://wiggerboelens.com/)",
+  "bugs": "https://github.com/Boelensman1/deluge/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Boelensman1/deluge"
+  },
+  "dependencies": {
+    "superagent": "3.5.2",
+    "typescript": "2.3.4"
+  },
+  "peerDependencies": {
+    "typescript": ">=2.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "latest",
+    "@types/node": "8.0.1",
+    "jest": "20.0.4",
+    "nock": "9.0.13",
+    "rimraf": "^2.6.1",
+    "run-sequence": "^1.2.2",
+    "ts-jest": "^20.0.6",
+    "tslint": "5.4.3"
+  },
+  "scripts": {
+    "compile": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "tslint ./src/**/*.ts",
+    "clean": "rimraf lib",
+    "prepublish": "run-s lint test clean compile"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "src/__tests__/.*\\.(test)\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
+}
