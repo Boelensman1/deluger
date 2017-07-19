@@ -1,7 +1,9 @@
 import defaultProperties from './defaultProperties';
-// import { Torrent } from './interfaces'
 
-export default function listTorrents(torrent: Buffer, location?: string): Promise<string> {
+export default function addTorrent(
+  torrent: Buffer,
+  location?: string,
+): Promise<string> {
   const params = [
     Buffer.from(torrent).toString('base64'),
     {
@@ -9,8 +11,9 @@ export default function listTorrents(torrent: Buffer, location?: string): Promis
     },
   ];
 
-  return this.fetch('webapi.add_torrent', params).then(result => {
-    if (result === null || result.length !== 40 ) {
+  return this.fetch('webapi.add_torrent', params).then((result) => {
+    if (result === null || result.length !== 40) {
+      // tslint:disable-next-line max-line-length
       throw new Error('Deluge answered with null when an id was expected, maybe the torrent is already added?');
     }
     return result;

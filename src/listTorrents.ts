@@ -1,7 +1,10 @@
 import defaultProperties from './defaultProperties';
-import { Torrents } from './interfaces';
+import { ITorrents } from './interfaces';
 
-export default function listTorrents(properties = defaultProperties, torrentHashes = []): Promise<Torrents> {
+export default function listTorrents(
+  properties = defaultProperties,
+  torrentHashes = [],
+): Promise<ITorrents> {
   const params = [
     torrentHashes,
     properties,
@@ -13,7 +16,7 @@ export default function listTorrents(properties = defaultProperties, torrentHash
   }
 
   return this.fetch('webapi.get_torrents', params).then(result => (
-    result.torrents.map(torrent => {
+    result.torrents.map((torrent) => {
       const torrentFormatted = {};
       torrentFormatted[torrent.hash] = torrent;
       if (!getHashProperty) {

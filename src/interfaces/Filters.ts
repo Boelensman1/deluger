@@ -1,5 +1,5 @@
-export interface Filters {
-  state: Array<any>;
-  tracker_host: Array<any>;
-  label: Array<any>;
+export interface IFilters {
+  state: any[];
+  tracker_host: any[];
+  label: any[];
 }

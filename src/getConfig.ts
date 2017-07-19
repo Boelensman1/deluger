@@ -1,7 +1,7 @@
-export interface ConfigResult {
-  result: Array<any>;
+export interface IConfigResult {
+  result: any[];
 }
 
-export default function getConfig(): Promise<ConfigResult> {
+export default function getConfig(): Promise<IConfigResult> {
   return this.fetch('core.get_config');
 }

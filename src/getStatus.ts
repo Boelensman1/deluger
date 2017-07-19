@@ -1,14 +1,16 @@
 import defaultProperties from './defaultProperties';
-import { Filters, Stats, Torrents } from './interfaces';
+import { IFilters, IStats, ITorrents } from './interfaces';
 
-export interface StatusResult {
-  stats: Stats;
+export interface IStatusResult {
+  stats: IStats;
   connected: boolean;
-  torrents: Torrents;
-  filters: Filters;
+  torrents: ITorrents;
+  filters: IFilters;
 }
 
-export default function getStatus(properties = defaultProperties): Promise<StatusResult> {
+export default function getStatus(
+  properties = defaultProperties,
+): Promise<IStatusResult> {
   const params = [
     properties,
     [],

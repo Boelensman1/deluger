@@ -1,4 +1,4 @@
- export { Torrent } from './Torrent';
- export { Torrents } from './Torrents';
- export { Stats } from './Stats';
- export { Filters } from './Filters';
+ export { ITorrent } from './Torrent';
+export { ITorrents } from './Torrents';
+export { IStats } from './Stats';
+export { IFilters } from './Filters';

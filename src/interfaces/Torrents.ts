@@ -1,5 +1,5 @@
-import { Torrent } from '.';
+import { ITorrent } from '.';
 
-export interface Torrents {
-  any: Torrent;
+export interface ITorrents {
+  any: ITorrent;
 }

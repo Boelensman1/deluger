@@ -1,12 +1,12 @@
 import * as nock from 'nock';
-import Deluge from '..';
+import Deluge from '..'; // tslint:disable-line import-name
 
 nock.load('./src/__tests__/responses/getConfig.json');
 
 const deluge = new Deluge('http://host.com', 'passwd', 8083);
 
 it('Gets the current status of the deluge client', () => (
-  deluge.getConfig().then(config => {
+  deluge.getConfig().then((config) => {
     expect(config).toBeDefined();
     expect(config).toMatchSnapshot();
   })),

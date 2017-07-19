@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as zlib from 'zlib';
 
 function writeCalls(calls) {
-  calls.forEach(call => {
+  calls.forEach((call) => {
     const response = new Buffer(call.response.join(''), 'hex');
 
     const contents = zlib.gunzipSync(response).toString('utf8');
@@ -15,7 +15,11 @@ function writeCalls(calls) {
 
   const argv = process.argv.slice(2);
   const filename = `${path.resolve(argv[0]).replace(/\.[^/.]+$/, '')}.json`;
-  fs.writeFileSync(filename, JSON.stringify(calls, null, 2), { encoding: 'utf8' });
+  fs.writeFileSync(
+    filename,
+    JSON.stringify(calls, null, 2),
+    { encoding: 'utf8' },
+  );
 }
 
 export default writeCalls;

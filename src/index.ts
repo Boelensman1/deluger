@@ -15,7 +15,7 @@ export default class Deluge {
 
   private baseUrl: string;
   private agent: any;
-  private counter = 0;
+  private counter = -1;
 
   constructor(
     private hostname: string,
@@ -33,31 +33,35 @@ export default class Deluge {
     this.addTorrent = addTorrent;
   }
 
-  authenticate(): Promise<boolean> {
-    return this.fetch('auth.login', [this.password], false).then(res => {
-      return res === true;
-    });
+  public authenticate(): Promise<boolean> {
+    return this.fetch('auth.login', [this.password], false)
+      .then(res => (res === true));
   }
 
-  fetch(method: string, params: Array<string> = [], autoLogin= true): Promise<any> {
+  private fetch(
+    method: string,
+    params: string[] = [],
+    autoLogin= true,
+  ): Promise<any> {
     const body = {
       method,
       params,
-      id: this.counter++,
+      id: this.counter += 1,
     };
 
     return this.agent.post(this.baseUrl).send(body).buffer()
-    .then(res => {
+    .then((res) => {
       if (!res.ok) {
         throw res.error;
       }
       return JSON.parse(res.text);
     })
-    .then(res => {
+    .then((res) => {
       if (res.error !== null) {
         // check if error was due to not being authenticated and if so, login
         if (res.error.code === 1 && autoLogin) {
-          return this.authenticate().then(() => (this.fetch(method, params, false)));
+          return this.authenticate()
+            .then(() => (this.fetch(method, params, false)));
         }
         throw new Error(res.statusText);
       }

@@ -1,4 +1,4 @@
-export interface Torrent {
+export interface ITorrent {
   hash: string;
   queue: number;
   name: number;

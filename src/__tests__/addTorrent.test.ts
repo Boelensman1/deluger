@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as nock from 'nock';
-import Deluge from '..';
+import Deluge from '..'; // tslint:disable-line import-name
 
 nock.load('./src/__tests__/responses/addTorrent.json');
 
@@ -18,7 +18,7 @@ const readFile = file => (
 const deluge = new Deluge('http://host.com', 'passwd', 8083);
 
 it('Add a torrent to deluge', () => (
-  deluge.addTorrent('file').then(result => {
+  deluge.addTorrent('file').then((result) => {
     expect(result).toBeDefined();
     expect(result).toMatchSnapshot();
   })),
