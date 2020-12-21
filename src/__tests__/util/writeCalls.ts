@@ -2,6 +2,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as zlib from 'zlib';
 
+/**
+ * Write nock calls to a .json file
+ *
+ * @param {array} calls The calls that have been made (from nock.recorder)
+ * @returns {undefined}
+ */
 function writeCalls(calls) {
   calls.forEach((call) => {
     const response = new Buffer(call.response.join(''), 'hex');

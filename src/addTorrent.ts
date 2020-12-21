@@ -1,5 +1,10 @@
 import defaultProperties from './defaultProperties';
 
+/**
+ * Add a torrent to deluge, uses https://github.com/idlesign/deluge-webapi
+ *
+ * @returns {string} The hash of the torrent
+ */
 export default function addTorrent(
   torrent: Buffer,
   location?: string,
