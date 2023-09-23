@@ -4,8 +4,8 @@
     "method": "POST",
     "path": "/json",
     "body": {
-      "method":"core.get_config",
-      "params":[],
+      "method": "core.get_config",
+      "params": [],
       "id": 0
     },
     "status": 200,
@@ -36,9 +36,7 @@
     "path": "/json",
     "body": {
       "method": "auth.login",
-      "params": [
-        "passwd"
-      ],
+      "params": ["passwd"],
       "id": 1
     },
     "status": 200,
@@ -67,8 +65,8 @@
     "method": "POST",
     "path": "/json",
     "body": {
-      "method":"core.get_config",
-      "params":[],
+      "method": "core.get_config",
+      "params": [],
       "id": 2
     },
     "status": 200,
@@ -96,12 +94,7 @@
         "max_active_seeding": 500,
         "allow_remote": true,
         "max_upload_slots_global": 4,
-        "enabled_plugins": [
-          "Label",
-          "AutoAdd",
-          "WebUi",
-          "webapi"
-        ],
+        "enabled_plugins": ["Label", "AutoAdd", "WebUi", "webapi"],
         "max_half_open_connections": 50,
         "download_location": "/mnt/data",
         "compact_allocation": false,
@@ -120,10 +113,7 @@
         "enc_level": 2,
         "copy_torrent_file": false,
         "max_connections_per_second": 20,
-        "listen_ports": [
-          6870,
-          6871
-        ],
+        "listen_ports": [6870, 6871],
         "max_connections_per_torrent": -1,
         "del_copy_torrent_file": false,
         "move_completed": false,
@@ -167,10 +157,7 @@
         "seed_time_ratio_limit": 7,
         "remove_seed_at_ratio": true,
         "autoadd_location": "/Downloads",
-        "outgoing_ports": [
-          0,
-          0
-        ],
+        "outgoing_ports": [0, 0],
         "seed_time_limit": 180,
         "cache_size": 512,
         "share_ratio_limit": 2.5,

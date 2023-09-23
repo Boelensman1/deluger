@@ -23,4 +23,4 @@ export default [
   'max_download_speed',
   'max_upload_speed',
   'seeds_peers_ratio',
-];
+]

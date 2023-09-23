@@ -1,3 +1,3 @@
 # Wrapper for deluge api
 
-*Experimental! Work in progress...*
+_Experimental! Work in progress..._
