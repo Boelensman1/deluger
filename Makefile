@@ -16,4 +16,6 @@ test-watch: node_modules
 	npx jest --watch
 
 lint:
-	true
+	npx tsc --project ./tsconfig.json --noEmit
+
+.PHONY: lint test test-watch

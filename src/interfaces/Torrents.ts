@@ -1,5 +1,5 @@
-import { ITorrent } from './index.js'
+import { Torrent } from './index.js'
 
-export interface ITorrents {
-  [hash: string]: ITorrent
+export interface Torrents {
+  [hash: string]: Torrent
 }

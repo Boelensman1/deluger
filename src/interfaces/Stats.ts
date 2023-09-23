@@ -1,4 +1,4 @@
-export interface IStats {
+export interface Stats {
   upload_protocol_rate: number
   max_upload: number
   download_protocol_rate: number

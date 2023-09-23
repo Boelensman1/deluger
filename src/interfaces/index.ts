@@ -1,4 +1,4 @@
-export { ITorrent } from './Torrent.js'
-export { ITorrents } from './Torrents.js'
-export { IStats } from './Stats.js'
-export { IFilters } from './Filters.js'
+export { Torrent } from './Torrent.js'
+export { Torrents } from './Torrents.js'
+export { Stats } from './Stats.js'
+export { Filters } from './Filters.js'

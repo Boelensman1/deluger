@@ -1,4 +1,6 @@
-export default [
+import type { Torrent } from "./interfaces/Torrent.js"
+
+const defaultProperties: (keyof Torrent)[] = [
   'hash',
   'queue',
   'name',
@@ -24,3 +26,5 @@ export default [
   'max_upload_speed',
   'seeds_peers_ratio',
 ]
+
+export default defaultProperties

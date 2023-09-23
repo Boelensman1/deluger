@@ -1,18 +1,22 @@
 import * as superagent from 'superagent'
 
 import defaultProperties from './defaultProperties.js'
-import { IFilters, IStats, ITorrents } from './interfaces/index.js'
+import type { Filters, Stats, Torrents, Torrent } from './interfaces/index.js'
 
-export interface IConfigResult {
+export interface ConfigResult {
   result: any[]
 }
 
-export interface IStatusResult {
-  stats: IStats
+export interface StatusResult {
+  stats: Stats
   connected: boolean
-  torrents: ITorrents
-  filters: IFilters
+  torrents: Torrents
+  filters: Filters
 }
+
+export type { Torrent } from './interfaces/Torrent.js'
+
+type TorrentWithProps<T extends keyof Torrent> = Pick<Torrent, T>
 
 export default class Deluge {
   private baseUrl: string
@@ -91,19 +95,20 @@ export default class Deluge {
     return result
   }
 
-  public getConfig(): Promise<IConfigResult> {
+  public getConfig(): Promise<ConfigResult> {
     return this.fetch('core.get_config')
   }
 
-  public getStatus(properties = defaultProperties): Promise<IStatusResult> {
+  public getStatus(properties = defaultProperties): Promise<StatusResult> {
     const params = [properties, []].map((i) => JSON.stringify(i))
     return this.fetch('web.update_ui', params)
   }
 
-  public async listTorrents(
-    properties = defaultProperties,
+  public async listTorrents<T extends (keyof Torrent)[]>(
+    // @ts-expect-error
+    properties: T = defaultProperties,
     torrentHashes: string[] = [],
-  ): Promise<ITorrents> {
+  ): Promise<{ [hash: string]: TorrentWithProps<T[number]> }> {
     const params = [torrentHashes, properties]
 
     const getHashProperty = properties.indexOf('hash') > -1
@@ -116,11 +121,9 @@ export default class Deluge {
       params.map((i) => JSON.stringify(i)),
     )
     return result.torrents.map((torrent: any) => {
-      const torrentFormatted = {}
-      // @ts-expect-error
+      const torrentFormatted: Torrents = {}
       torrentFormatted[torrent.hash] = torrent
       if (!getHashProperty) {
-        // @ts-expect-error
         delete torrentFormatted[torrent.hash].hash
       }
       return torrentFormatted
