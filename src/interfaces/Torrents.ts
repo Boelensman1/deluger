@@ -1,5 +1,5 @@
-import { ITorrent } from '.';
+import { ITorrent } from './index.js'
 
 export interface ITorrents {
-  any: ITorrent;
+  any: ITorrent
 }

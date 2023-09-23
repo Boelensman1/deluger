@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`List the torrents of the deluge client 1`] = `
-Array [
-  Object {
-    "652e86b14aa91023ec1fb75a488ac6f34cd39ff0": Object {
+[
+  {
+    "652e86b14aa91023ec1fb75a488ac6f34cd39ff0": {
       "progress": 100,
     },
   },

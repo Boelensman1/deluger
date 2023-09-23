@@ -1,65 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Gets the current status of the deluge client 1`] = `
-Object {
+{
   "connected": true,
-  "filters": Object {
-    "label": Array [
-      Array [
+  "filters": {
+    "label": [
+      [
         "",
         1,
       ],
-      Array [
+      [
         "All",
         1,
       ],
     ],
-    "state": Array [
-      Array [
+    "state": [
+      [
         "All",
         1,
       ],
-      Array [
+      [
         "Downloading",
         0,
       ],
-      Array [
+      [
         "Seeding",
         1,
       ],
-      Array [
+      [
         "Active",
         0,
       ],
-      Array [
+      [
         "Paused",
         0,
       ],
-      Array [
+      [
         "Queued",
         0,
       ],
-      Array [
+      [
         "Checking",
         0,
       ],
-      Array [
+      [
         "Error",
         0,
       ],
     ],
-    "tracker_host": Array [
-      Array [
+    "tracker_host": [
+      [
         "All",
         1,
       ],
-      Array [
+      [
         "archlinux.org",
         1,
       ],
     ],
   },
-  "stats": Object {
+  "stats": {
     "dht_nodes": 0,
     "download_protocol_rate": 11215,
     "download_rate": 0,
@@ -72,8 +72,8 @@ Object {
     "upload_protocol_rate": 16322,
     "upload_rate": 147667,
   },
-  "torrents": Object {
-    "88928d3ca7f5d71e39037279c1ee787a80de6ea0": Object {
+  "torrents": {
+    "88928d3ca7f5d71e39037279c1ee787a80de6ea0": {
       "progress": 100,
     },
   },
