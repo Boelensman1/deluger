@@ -108,7 +108,7 @@ export default class Deluge {
     // @ts-expect-error
     properties: T = defaultProperties,
     torrentHashes: string[] = [],
-  ): Promise<{ [hash: string]: TorrentWithProps<T[number]> }> {
+  ): Promise<Array<{ [hash: string]: TorrentWithProps<T[number]> }>> {
     const params = [torrentHashes, properties]
 
     const getHashProperty = properties.indexOf('hash') > -1
@@ -121,9 +121,11 @@ export default class Deluge {
       params.map((i) => JSON.stringify(i)),
     )
     return result.torrents.map((torrent: any) => {
-      const torrentFormatted: Torrents = {}
+      const torrentFormatted: { [hash: string]: TorrentWithProps<T[number]> } =
+        {}
       torrentFormatted[torrent.hash] = torrent
       if (!getHashProperty) {
+        // @ts-expect-error
         delete torrentFormatted[torrent.hash].hash
       }
       return torrentFormatted
