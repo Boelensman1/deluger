@@ -1,4 +1,5 @@
-import * as superagent from 'superagent'
+import got, { Got } from 'got'
+import { CookieJar } from 'tough-cookie'
 
 import defaultProperties from './defaultProperties.js'
 import type { Filters, Stats, Torrents, Torrent } from './interfaces/index.js'
@@ -18,20 +19,21 @@ export type { Torrent } from './interfaces/Torrent.js'
 
 type TorrentWithProps<T extends keyof Torrent> = Pick<Torrent, T>
 
-export default class Deluge {
-  private baseUrl: string
-  private agent: any
+class Deluge {
   private counter = -1
+  private client: Got
 
   constructor(
     hostname: string,
     private password: string,
     port = 8112,
   ) {
-    this.baseUrl = `${hostname}:${port}/json`
-
-    // init cookie support
-    this.agent = superagent.agent()
+    // create client
+    this.client = got.extend({
+      prefixUrl: `${hostname}:${port}`,
+      retry: { limit: 2 },
+      cookieJar: new CookieJar(), // add cookie support
+    })
   }
 
   public async authenticate(): Promise<boolean> {
@@ -41,7 +43,7 @@ export default class Deluge {
 
   private async fetch(
     method: string,
-    params: string[] = [],
+    params: any[] = [],
     autoLogin = true,
   ): Promise<any> {
     const body = {
@@ -50,16 +52,16 @@ export default class Deluge {
       id: (this.counter += 1),
     }
 
-    const result: any = await this.agent
-      .post(this.baseUrl)
-      .send(body)
-      .buffer()
-      .then((res: any) => {
-        if (!res.ok) {
-          throw res.error
-        }
-        return JSON.parse(res.text)
-      })
+    let result: any
+    try {
+      result = await this.client
+        .post('json', {
+          json: body,
+        })
+        .json()
+    } catch (err) {
+      throw err
+    }
 
     if (result.error !== null) {
       // check if error was due to not being authenticated and if so, login
@@ -79,9 +81,9 @@ export default class Deluge {
   public async addTorrent(torrent: Buffer, location?: string): Promise<string> {
     const params = [
       Buffer.from(torrent).toString('base64'),
-      JSON.stringify({
+      {
         download_location: location,
-      }),
+      },
     ]
 
     const result = await this.fetch('webapi.add_torrent', params)
@@ -100,7 +102,7 @@ export default class Deluge {
   }
 
   public getStatus(properties = defaultProperties): Promise<StatusResult> {
-    const params = [properties, []].map((i) => JSON.stringify(i))
+    const params = [properties, []]
     return this.fetch('web.update_ui', params)
   }
 
@@ -116,10 +118,7 @@ export default class Deluge {
       params[1].push('hash') // we always need the hash
     }
 
-    const result = await this.fetch(
-      'webapi.get_torrents',
-      params.map((i) => JSON.stringify(i)),
-    )
+    const result = await this.fetch('webapi.get_torrents', params)
     return result.torrents.map((torrent: any) => {
       const torrentFormatted: { [hash: string]: TorrentWithProps<T[number]> } =
         {}
@@ -132,3 +131,5 @@ export default class Deluge {
     })
   }
 }
+
+export default Deluge

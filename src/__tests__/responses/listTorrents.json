@@ -6,8 +6,8 @@
     "body": {
       "method": "webapi.get_torrents",
       "params": [
-        "[\"652e86b14aa91023ec1fb75a488ac6f34cd39ff0\"]",
-        "[\"progress\",\"hash\"]"
+        ["652e86b14aa91023ec1fb75a488ac6f34cd39ff0"],
+        ["progress", "hash"]
       ],
       "id": 0
     },
@@ -70,8 +70,8 @@
     "body": {
       "method": "webapi.get_torrents",
       "params": [
-        "[\"652e86b14aa91023ec1fb75a488ac6f34cd39ff0\"]",
-        "[\"progress\",\"hash\"]"
+        ["652e86b14aa91023ec1fb75a488ac6f34cd39ff0"],
+        ["progress", "hash"]
       ],
       "id": 2
     },

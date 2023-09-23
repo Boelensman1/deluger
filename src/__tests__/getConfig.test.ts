@@ -1,4 +1,4 @@
-import * as nock from 'nock'
+import nock from 'nock'
 import Deluge from '../index.js'
 
 nock.load('./src/__tests__/responses/getConfig.json')

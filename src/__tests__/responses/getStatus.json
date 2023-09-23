@@ -5,7 +5,7 @@
     "path": "/json",
     "body": {
       "method": "web.update_ui",
-      "params": ["[\"progress\"]", "[]"],
+      "params": [["progress"], []],
       "id": 0
     },
     "status": 200,
@@ -66,7 +66,7 @@
     "path": "/json",
     "body": {
       "method": "web.update_ui",
-      "params": ["[\"progress\"]", "[]"],
+      "params": [["progress"], []],
       "id": 2
     },
     "status": 200,
