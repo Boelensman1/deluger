@@ -9,7 +9,6 @@
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "strictBindCallApply": true,
-    "outDir": "lib",
     "useDefineForClassFields": false,
     "esModuleInterop": true,
     "noEmit": true

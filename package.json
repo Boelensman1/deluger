@@ -1,6 +1,6 @@
 {
   "name": "deluger",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A wrapper around the deluge API.",
   "type": "module",
   "exports": {
@@ -9,6 +9,9 @@
       "types": "./build/src/main.d.mts"
     }
   },
+  "files": [
+    "build/**"
+  ],
   "types": "./build/src/main.d.mts",
   "license": "MIT",
   "author": "Wigger Boelens <me@wiggerboelens.com> (http://wiggerboelens.com/)",
@@ -42,6 +45,6 @@
     "tough-cookie": "^4.1.4"
   },
   "scripts": {
-    "prepublishOnly": "make lint test build"
+    "prepublishOnly": "CI=1 make lint test build"
   }
 }
