@@ -1,3 +1,5 @@
+import type { TorrentHash } from './index.mjs'
+
 export interface Torrent {
   max_download_speed: number
   upload_payload_rate: number
@@ -15,7 +17,7 @@ export interface Torrent {
   tracker_host: string
   total_uploaded: number
   total_done: number
-  hash: string
+  hash: TorrentHash
   total_seeds: number
   seeds_peers_ratio: number
   num_seeds: number
@@ -24,3 +26,8 @@ export interface Torrent {
   queue: number
   distributed_copies: number
 }
+
+export type TorrentWithProps<T extends (keyof Torrent)[]> = Pick<
+  Torrent,
+  T[number]
+>

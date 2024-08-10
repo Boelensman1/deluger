@@ -1,10 +1,15 @@
 {
   "name": "deluger",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A wrapper around the deluge API.",
   "type": "module",
-  "main": "lib/index.js",
-  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./build/src/main.mjs",
+      "types": "./build/src/main.d.mts"
+    }
+  },
+  "types": "./build/src/main.d.mts",
   "license": "MIT",
   "author": "Wigger Boelens <me@wiggerboelens.com> (http://wiggerboelens.com/)",
   "bugs": "https://github.com/Boelensman1/deluger/issues",
@@ -13,23 +18,30 @@
     "url": "https://github.com/Boelensman1/deluger"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.2",
-    "@types/jest": "latest",
-    "@types/node": "^20.6.3",
-    "@types/tough-cookie": "^4.0.3",
-    "jest": "^29.7.0",
-    "nock": "^13.3.3",
-    "prettier": "^3.0.3",
-    "rimraf": "^5.0.1",
-    "ts-jest": "^29.1.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
-  },
-  "scripts": {
-    "prepublishOnly": "make lint test clean lib"
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^20.14.12",
+    "@types/tough-cookie": "^4.0.5",
+    "prettier": "^3.3.3",
+    "tsx": "^4.16.2",
+    "type-fest": "^4.24.0",
+    "typescript": "^5.5.4",
+    "vitest": "^2.0.5",
+    "@eslint/js": "^8.57.0",
+    "@types/eslint__js": "^8.42.3",
+    "@typescript-eslint/eslint-plugin": "^7.17.0",
+    "@typescript-eslint/parser": "^7.17.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^7.17.0"
   },
   "dependencies": {
-    "got": "^13.0.0",
-    "tough-cookie": "^4.1.3"
+    "got": "^14.4.2",
+    "tough-cookie": "^4.1.4"
+  },
+  "scripts": {
+    "prepublishOnly": "make lint test build"
   }
 }

@@ -1,9 +1,0 @@
-{
-  "extends": "@tsconfig/node18/tsconfig.json",
-  "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "lib",
-    "declaration": true
-  },
-  "exclude": ["node_modules", "lib", "jest.config.ts", "src/__tests__"]
-}

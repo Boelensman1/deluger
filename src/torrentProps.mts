@@ -1,4 +1,4 @@
-import type { Torrent } from './interfaces/Torrent.js'
+import type { Torrent } from './interfaces/index.mjs'
 
 const defaultProperties: (keyof Torrent)[] = [
   'hash',

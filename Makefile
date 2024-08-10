@@ -1,21 +1,26 @@
+INSTALL_DEPS=node_modules
 SRC_FILES=$(shell find src/)
 
-node_modules: package.json package-lock.json
+node_modules: package.json
 	npm ci
 
 clean:
-	npx rimraf lib
+	rm -rf node_modules
 
-lib: node_modules $(SRC_FILES)
-	npx tsc --project ./tsconfig.prod.json
+build: $(INSTALL_DEPS) $(SRC_FILES) tsconfig.json tsconfig.build.json
+	rm -rf ./build
+	npx tsc --project tsconfig.build.json
 
-test: node_modules
-	NODE_OPTIONS=--experimental-vm-modules npx jest
+dev: $(INSTALL_DEPS)
+	npx --no-install tsx .
 
-test-watch: node_modules
-	NODE_OPTIONS=--experimental-vm-modules npx jest --watch
+test:
+	npx vitest
+
+install: $(INSTALL_DEPS)
 
 lint:
-	npx tsc --project ./tsconfig.json --noEmit
+	npx --no-install tsc --noEmit
+	npx --no-install eslint .
 
-.PHONY: lint test test-watch
+.PHONY: dev install clean lint test
