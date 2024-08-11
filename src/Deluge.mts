@@ -35,6 +35,9 @@ export class Deluge {
     this.client = got.extend({
       prefixUrl: `${hostname}:${port}`,
       retry: { limit: 2 },
+      timeout: {
+        request: 10000,
+      },
       cookieJar: new CookieJar(), // add cookie support
     })
   }

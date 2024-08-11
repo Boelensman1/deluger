@@ -1,6 +1,6 @@
 {
   "name": "deluger",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "A wrapper around the deluge API.",
   "type": "module",
   "exports": {
