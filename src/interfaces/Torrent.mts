@@ -25,6 +25,19 @@ export interface Torrent {
   is_auto_managed: boolean
   queue: number
   distributed_copies: number
+  file_priorities: number[]
+  add_paused: boolean
+  compact_allocation: boolean
+  download_location: string
+  max_connections: number
+  max_upload_slots: number
+  prioritize_first_last_pieces: boolean
+  move_completed: boolean
+  move_completed_path?: string
+  pre_allocate_storage: boolean
+  sequential_download: boolean
+  seed_mode: boolean
+  super_seeding: boolean
 }
 
 export type TorrentWithProps<T extends (keyof Torrent)[]> = Pick<

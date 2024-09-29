@@ -25,6 +25,19 @@ const defaultProperties: (keyof Torrent)[] = [
   'max_download_speed',
   'max_upload_speed',
   'seeds_peers_ratio',
+  'file_priorities',
+  'add_paused',
+  'compact_allocation',
+  'download_location',
+  'max_connections',
+  'max_upload_slots',
+  'prioritize_first_last_pieces',
+  'move_completed',
+  'move_completed_path',
+  'pre_allocate_storage',
+  'sequential_download',
+  'seed_mode',
+  'super_seeding',
 ]
 
 export default defaultProperties

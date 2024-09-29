@@ -8,6 +8,7 @@ import type {
   TorrentHash,
   Torrents,
   TorrentsWithProps,
+  DelugeAddTorrentOptions,
 } from './interfaces/index.mjs'
 import torrentProps from './torrentProps.mjs'
 
@@ -21,6 +22,44 @@ interface DelugeResult<T> {
   id: number
   result: T
 }
+
+type AddTorrentOptions = Partial<{
+  filePriorities: number[]
+  addPaused: boolean
+  compactAllocation: boolean
+  downloadLocation: string
+  maxConnections: number
+  maxDownloadSpeed: number
+  maxUploadSlots: number
+  maxUploadSpeed: number
+  prioritizeFirstLastPieces: boolean
+  moveCompleted: boolean
+  moveCompletedPath: string
+  preAllocateStorage: boolean
+  sequentialDownload: boolean
+  seedMode: boolean
+  superSeeding: boolean
+}>
+
+const getAddOptions = (
+  options: AddTorrentOptions,
+): DelugeAddTorrentOptions => ({
+  download_location: options.downloadLocation,
+  add_paused: options.addPaused,
+  move_completed: options.moveCompleted,
+  move_completed_path: options.moveCompletedPath,
+  max_download_speed: options.maxDownloadSpeed,
+  max_upload_speed: options.maxUploadSpeed,
+  max_connections: options.maxConnections,
+  max_upload_slots: options.maxUploadSlots,
+  prioritize_first_last_pieces: options.prioritizeFirstLastPieces,
+  file_priorities: options.filePriorities,
+  sequential_download: options.sequentialDownload,
+  super_seeding: options.superSeeding,
+  compact_allocation: options.compactAllocation,
+  pre_allocate_storage: options.preAllocateStorage,
+  seed_mode: options.seedMode,
+})
 
 export class Deluge {
   private counter = -1
@@ -76,20 +115,18 @@ export class Deluge {
   }
 
   /**
-   * Add a torrent to deluge, uses https://github.com/idlesign/deluge-webapi
+   * Add a torrent to deluge
    *
    * @returns {string} The hash of the torrent
    */
   public async addTorrent(
     torrent: Buffer,
-    location?: string,
+    options: AddTorrentOptions = {},
   ): Promise<TorrentHash> {
     const params = [
       'filename.torrent', // not sure what this is used for
       Buffer.from(torrent).toString('base64'),
-      {
-        download_location: location,
-      },
+      getAddOptions(options),
     ]
 
     const result = await this.fetch<TorrentHash>(
